@@ -1,0 +1,59 @@
+***************************Distributed file Storage with Erasure Encodes******************************************************
+										Project Readme
+
+Project Group:6
+Members:
+	Rohan Jingar (Y9488)
+	Vimal Sharma (Y9651)
+
+How to use?
+To start a server :
+There are 4 server files namely 01.py,02.py,03.py,04.py
+to change the server address and port number modify the Host and Port variables in their respective codes.
+server 01.py will download all the files into a single folder 01 in the code directory similarly 02.py in 02 and so on.
+To start a server 01 use:
+	python 01.py
+
+To start the client :
+	python cli.py
+There is a client class defined in client.py. To start a client program use "cli.py" it will first create an client object and start the gui.
+after starting the client a gui will be shown which will have two yellow colored textboxes. Write the "<server ip>:<server port>" (without the quotes)
+into the left box and hit enter or click on connect then the client will try to connect to the server.
+
+The program can be used for transferring data files between client and server. 
+Basic operations:
+1.Simply send a file to a specific server
+	>after connecting to the specific server click on "send file" button and then select the file.
+
+2.First split and send equally among all the connected servers
+	>click on "split/send" it will split the file into n equal parts where n is the number of all the connected servers and will send one part to each server
+
+3.To view what cat be downloaded from the server side
+	>click on a specific server and then click on "view files" it will show the list of files on the right box
+
+4.To download a specific file
+	>first select a file from the right box and then click on "download" it will ask for the location and download the file there.
+	>Remember that the server from which to download is selected in the left box.(actually the left text input box must contain the server address and the right one should contain the name of the file to download)
+
+5.T join the split files (in 2nd point):
+	>after downloading each file part into a particular directory click on "join"
+	>make sure that the directory contains only the files to be joined
+	>the joined file will be produced in that directory
+5.To demonstrate Erasure coding (Reed Solomon encoding):
+	>click on "rs_encode" it will ask for a file
+	>after selecting the file it will divide the file into n 
+
+6.Decoding RS encoded files
+	>after downloading atleast k file parts from various servers into a specific folder click on "decode"
+	>it will ask for the location of encoded files (make sure the directory contains only the rs encoded files which needs to be decoded)
+	>it will decode and produce the original file in that location
+
+Note: The implementation part of the Reed Solomon encoding is mentioned in the report
+Note: it may some time happen that after connecting the server while viewing or sending files a Broken Pipe error is shown :
+	>simply press ctrl-C to break that execution and restart that particular server and reconnect the client
+Note: While downloading some big file the client program may stuck press ctrl-C on the terminal of client program(break only that execution and not the client program)
+	and the check the download location the file will be there(downloaded)
+
+Note: The project has a darcs repository at patch-tag.com. To get the latest patches:
+	>darcs get <your patch-tag id>@patch-tag.com:/r/rohanjingar/distributed 
+
